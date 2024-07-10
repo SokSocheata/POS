@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
+
+
+    <script src="pos.js">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    header {
+        margin-top: -15px;
+        display: flex;
+        justify-content: space-between;
+        width: auto;
+        background-color: #3498db;
+        /* Change to a shade of blue */
+        height: 75px;
+        box-shadow: -5px 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    #logo {
+        padding: 20px;
+        font-style: italic;
+        font-weight: bold;
+        color: #2c3e50;
+        /* Change to a dark color */
+        font-size: 28px;
+        text-decoration: none;
+    }
+
+    span {
+        font-size: 28px;
+        font-weight: bold;
+        color: #e74c3c;
+        /* Change to a shade of red */
+        margin-left: 5px;
+    }
+
+    .navbar p {
+        justify-content: space-between;
+        margin-top: 15px;
+        font-size: 18px;
+        /* Adjusted font size */
+        margin-right: 20px;
+        color: #2c3e50;
+        /* Change to a dark color */
+        transition: color 0.3s ease;
+        /* Smooth color transition on hover */
+    }
+
+    .navbar p:hover {
+        cursor: pointer;
+        color: #3498db;
+        /* Change to a shade of blue */
+    }
+
+    .bxs-user-circle {
+        font-size: 32px;
+        margin-right: 20px;
+        color: #2c3e50;
+        /* Change to a dark color */
+        transition: color 0.3s ease;
+        /* Smooth color transition on hover */
+    }
+
+    .bxs-user-circle:hover {
+        cursor: pointer;
+        color: #3498db;
+        /* Change to a shade of blue */
+    }
+
+    /* Add some padding and margin to the body */
+    body {
+        padding: 20px;
+        margin: 0;
+    }
+
+    /* Style the product grid */
+    #list-product {
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    #list-product .item {
+        background-color: #c4d2d5;
+        /* Light gray background */
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #list-product .item img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .btn-product {
+        border-radius: 5px;
+        background-color: #1d4f71;
+        /* Change to a shade of blue */
+        border: 1px solid #2980b9;
+        /* Darker shade of blue */
+        padding: 10px;
+        margin-top: 2px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-product:hover {
+        background-color: #2980b9;
+        /* Darker shade on hover */
+    }
+
+    /* Style the table */
+    #tbl-report {
+        border: 2px solid #3498db;
+        /* Change to a shade of blue */
+        margin-bottom: 19px;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        margin-top: 20px;
+    }
+
+    .table th,
+    .table td {
+        border: 1px solid #3498db;
+        /* Change to a shade of blue */
+        padding: 10px;
+        text-align: center;
+    }
+
+    #logo {
+        padding: 20px;
+        font-style: italic;
+        font-weight: bold;
+        color: #2c3e50;
+        /* Change to a dark color */
+        font-size: 28px;
+        text-decoration: none;
+    }
+
+    span {
+        font-size: 24px;
+        font-weight: bold;
+        color: #18115f;
+        /* Change to a shade of red */
+        margin-left: 5px;
+    }
+
+    .navbar p {
+        justify-content: space-between;
+        margin-top: 15px;
+        font-size: 18px;
+        /* Adjusted font size */
+        margin-right: 20px;
+        color: #2c3e50;
+        /* Change to a dark color */
+        transition: color 0.3s ease;
+        /* Smooth color transition on hover */
+    }
+
+    .navbar p:hover {
+        cursor: pointer;
+        color: #3498db;
+        /* Change to a shade of blue */
+    }
+
+    .bxs-user-circle {
+        font-size: 32px;
+        margin-right: 20px;
+        color: #2c3e50;
+        /* Change to a dark color */
+        transition: color 0.3s ease;
+        /* Smooth color transition on hover */
+    }
+
+    .bxs-user-circle:hover {
+        cursor: pointer;
+        color: #3498db;
+        /* Change to a shade of blue */
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        /* Set the body height to full viewport height */
+    }
+
+    main {
+        flex: 1;
+        /* Allow the main content to grow and fill the remaining space */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .row {
+        flex: 1;
+        /* Allow the row to grow and fill the remaining space */
+        display: flex;
+    }
+
+    #list-product {
+        flex: 1;
+        /* Allow the product list to grow and fill the remaining space */
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+
+    #tbl-report {
+        flex: 1;
+        /* Allow the table report to grow and fill the remaining space */
+        border: 1px solid black;
+        margin-left: 20px;
+        /* Add margin for better separation */
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    .table th,
+    .table td {
+        border: 1px solid #3498db;
+        /* Change to a shade of blue */
+        padding: 10px;
+        text-align: center;
+    }
+
+    .btn_pro {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn_pro button {
+        margin: 12px;
+        padding: 15px;
+        background-color: #3498db;
+        /* Change to a shade of blue */
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+
+    .btn_pro button:hover {
+        background-color: #2980b9;
+        /* Darker shade on hover */
+    }
+
+    footer {
+        background-color: white;
+        /* Change to a shade of blue */
+        height: 58px;
+        margin: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<body>
+    <header>
+        <a class="animate__animated animate__bounce" id="logo" style="color: rgb(9, 91, 91);"><b>POS<span
+                    style="color: #e0e4e7;">SYSTEM</span></b></a>
+        <nav class="navbar">
+            <p style="font-size: 24px; color: #e0e4e7;">Home</p>
+            <p style="font-size: 24px; color: #e0e4e7;">Contact</p>
+            <p style="font-size: 24px; color: #e0e4e7;">Login</p>
+            <i class='bx bxs-user-circle'></i>
+
+        </nav>
+    </header>
+    <main>
+        <div class="row">
+            <div id="list-product" class="col-8">
+                <div class="item">
+                    <img src="https://rukminim2.flixcart.com/image/300/350/xif0q/shoe/7/2/m/6-tm-12-6-trm-white-original-imagjqyzz8z9jrgf.jpeg?q=90&crop=false"
+                        alt="">
+                    <h2 style="margin-top: 10px;">Adidas</h2>
+                    <div class="price">420$</div>
+                    <button type="button" class="btn-product" id="add-item">Add Item</button>
+                </div>
+                <div class="item">
+                    <img src="https://rukminim2.flixcart.com/image/450/500/xif0q/shoe/7/z/r/8-white-leaf-8-urbanbox-white-black-original-imagvgf4cuzs2hrw.jpeg?q=90&crop=false"
+                        alt="">
+                    <h2 style="margin-top: 10px;">Converse</h2>
+                    <div class="price">375$</div>
+                    <button type="button" class="btn-product" id="add-item">Add Item</button>
+                </div>
+                <div class="item">
+                    <img src="https://rukminim1.flixcart.com/image/300/300/l12h1u80/shoe/e/m/g/10-mh-6002-white-10-m-h-footwear-white-original-imagcpy7nkanbzhf.jpeg"
+                        alt="">
+                    <h2 style="margin-top: 10px;">Nike</h2>
+                    <div class="price">325$</div>
+                    <button type="button" class="btn-product" id="add-item">Add Item</button>
+                </div>
+                <div class="item">
+                    <img src="https://nb.scene7.com/is/image/NB/u9060blk_nb_02_i?$pdpflexf2$&wid=440&hei=440" alt="">
+                    <h2 style="margin-top: 10px;">New Balance</h2>
+                    <div class="price">265$</div>
+                    <button type="button" class="btn-product" id="add-item">Add Item</button>
+                </div>
+                <div class="item">
+                    <img src="https://seekindonesia.com/cdn/shop/files/4_62b58bb2-1b27-482e-9bf6-93dae9db110a_1400x.jpg?v=1686198944"
+                        alt="">
+                    <h2 style="margin-top: 10px;">Puma</h2>
+                    <div class="price">234$</div>
+                    <button type="button" class="btn-product" id="add-item">Add Item</button>
+                </div>
+                <div class="item">
+                    <img src="https://ng.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/00/295531/1.jpg?1832"
+                        alt="">
+                    <h2 style="margin-top: 10px;">Air Jordan</h2>
+                    <div class="price">203$</div>
+                    <button type="button" class="btn-product" id="add-item">Add Item</button>
+                </div>
+                <div class="item">
+                    <img src="https://m.media-amazon.com/images/I/61oejShhPyL._SY625_.jpg" alt="">
+                    <h2 style="margin-top: 10px;">Hoka</h2>
+                    <div class="price">155$</div>
+                    <button type="button" class="btn-product" id="add-item">Add Item</button>
+                </div>
+                <div class="item">
+                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/4948095c2bd04bbcb5c2af1601154a02_9366/Stan_Smith_Lux_Shoes_White_HP2201_HM1.jpg"
+                        alt="">
+                    <h2 style="margin-top: 10px;">Skechers</h2>
+                    <div class="price">105$</div>
+                    <button type="button" class="btn-product" id="add-item">Add Item</button>
+                </div>
+                <div class="item">
+                    <img src="https://www.jiomart.com/images/product/500x630/rvbranphfh/bruton-running-shoes-for-men-product-images-rvbranphfh-0-202206141814.jpg"
+                        alt="">
+                    <h2 style="margin-top: 10px;">Gucci</h2>
+                    <div class="price">95$</div>
+                    <button type="button" class="btn-product" id="add-item">Add Item</button>
+                </div>
+                <div class="item">
+                    <img src="https://contents.mediadecathlon.com/p2153236/8ff54ab7687daad665741f08d7be5d37/p2153236.jpg?format=auto&quality=70&f=650x0"
+                        alt="">
+                    <h2 style="margin-top: 10px;">Superga</h2>
+                    <div class="price">80$</div>
+                    <button type="button" class="btn-product" id="add-item">Add Item</button>
+                </div>
+
+
+            </div>
+            <div class="col-4" id="tbl-report" style="border: 2px solid rgb(16, 11, 59); margin-left: 2px;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name Product</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Discount</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody class="add-tbl">
+
+                    </tbody>
+                </table>
+                <div>
+                    <a class="total-cash"
+                        style="font-size: 24px; color: #14844c; text-decoration: none;"><b>Total:</b><span
+                            class="total-result"></span></a><br>
+                    <a class="total-cash" style="font-size: 24px; color: #d82525; text-decoration: none;"><b>Total
+                            Discount:</b><span class="total-discount"></span></a><br>
+                    <a class="total-cash" style="font-size: 24px; color: #18115f; text-decoration: none;"><b>Total
+                            Payment:</b><span class="total-pay"></span></a><br>
+                    <a class="return-cash" style="font-size: 24px; color: #6a0759; text-decoration: none;"><b>Return
+                            Cash:</b><span class="total-return"></span></a>
+                </div>
+            </div>
+        </div>
+        <script src="pos.js"></script>
+    </main>
+
+    <footer>
+        <div class="btn_pro">
+            <button type="button" class="btn btn-secondary btn-lg" id="clear-item"
+                style="font-size: 24px; color: #5d160e;"><b>Clear</b></button>
+            <button type="button" class="btn btn-secondary btn-lg" id="remove-item"
+                style="font-size: 24px; color: rgb(40, 22, 77);"><b>Remove</b></button>
+            <button type="button" class="btn btn-secondary btn-lg" id="print-invoie"
+                style="font-size: 24px; color: #7e1156;"><b>Print</b></button>
+            <button type="button" class="btn btn-secondary btn-lg" id="btn-pay"
+                style="font-size: 24px; color: rgb(15, 84, 15);"><b>Pay</b></button>
+        </div>
+    </footer>
+</body>
+
+</html>
